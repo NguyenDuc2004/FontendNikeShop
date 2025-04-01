@@ -17,10 +17,6 @@ const Header = () => {
             to: "product"
         },
         {
-            title: "Profile",
-            to: "profile"
-        },
-        {
             title: "Blog",
             to: "blog"
         }

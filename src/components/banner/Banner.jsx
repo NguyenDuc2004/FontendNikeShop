@@ -8,7 +8,7 @@ const Banner = () => {
             <div className="absolute w-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
                 <h2 className='text-x2 lg:text-4xl text-white font-bold lg:leading-10 animate-slideInleft'>
                     MAX SPACE <br />
-                    <h3 className='text-[14px]'>The greatest shooters make space for their shot-and everyone else's.</h3>
+                    <p className='text-[14px] font-thin'>The greatest shooters make space for their shot-and everyone else's.</p>
                 </h2>
 
                 <Link
