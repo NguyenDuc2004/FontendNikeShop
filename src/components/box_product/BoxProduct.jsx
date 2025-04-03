@@ -26,7 +26,7 @@ const Box_product = ({ item }) => {
                     </li>
                 </ul>
                 <div className="rounded-xl overflow-hidden bg-white lg:h-[385px]">
-                    <img className="block size-full object-cover" src={item.imageURL} alt="" />
+                    <img className="block size-full object-cover" src={item.imageUrl} alt="" />
                 </div>
                 <div className="flex justify-center items-center gap-1 mt-5">
                     <Rating name="half-rating" defaultValue={item.rating} precision={0.5} />

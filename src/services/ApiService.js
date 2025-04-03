@@ -1,21 +1,34 @@
 import axios from "axios";
-const URL_GET_LIST_CATEGORIES = "http://localhost:8081/api/client/categories/list"
-const URL_GET_LIST_PRODUCTS = "http://localhost:8081/api/client/products/list"
+const URL = "http://localhost:8081/api"
+const URL_AUTHEN = `${URL}/auth`
 const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJua21kQGdtYWlsLmNvbSIsImlhdCI6MTc0MzUxNzM0MiwiZXhwIjoxNzQ0OTU3MzQyfQ.dR-J4NDIPl-JfwTM3P_OTyyRTUBNTfRFlB_YHSY_aog";
+
 const ApiService = {
-    GetListCategories: async () => {
-        return await axios.get(URL_GET_LIST_CATEGORIES, {
-            headers: {
-                Authorization: 'Bearer ' + token
-            }
-        })
+    Get: async (suffixUrl) => {
+        try {
+            return await axios.get(URL + suffixUrl)
+        } catch (error) {
+            console.error("Lỗi khi gửi Get request:", error);
+            throw error;
+        }
     },
-    GetListProducts: async () => {
-        return await axios.get(URL_GET_LIST_PRODUCTS, {
-            headers: {
-                Authorization: 'Bearer ' + token
-            }
-        })
+
+    PostRegis: async (suffixUrl, formData) => {
+        try {
+            const response = await axios.post(URL_AUTHEN + suffixUrl, formData,);
+            return response.data;
+        } catch (error) {
+            console.error("Lỗi khi gửi POST request:", error);
+            throw error;
+        }
+    },
+    PostAccessToken: async (suffixUrl, formData) => {
+        try {
+            return await axios.post(URL_AUTHEN + suffixUrl, formData)
+        } catch (error) {
+            console.error("Lỗi khi gửi POST request:", error);
+            throw error;
+        }
     }
 }
 

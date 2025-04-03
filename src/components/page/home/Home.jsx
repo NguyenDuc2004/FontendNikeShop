@@ -14,7 +14,7 @@ const Home = () => {
     const dispatch = useDispatch();
     const fetchListCategories = async () => {
         try {
-            const res = await ApiService.GetListCategories();
+            const res = await ApiService.Get("/client/categories/list");
             if (res.status === 200) {
                 dispatch(ListCategory(res.data.data))
             }
@@ -24,7 +24,7 @@ const Home = () => {
     }
     const fetchListProducts = async () => {
         try {
-            const res = await ApiService.GetListProducts();
+            const res = await ApiService.Get("/client/products/list");
             if (res.status === 200) {
                 const { items } = res.data.data;
                 dispatch(bestSeller(items.slice(0, 4)));

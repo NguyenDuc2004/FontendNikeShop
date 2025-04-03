@@ -5,8 +5,13 @@ import ico_heart from "../../assets/images/ico_heart.png"
 import ico_user from "../../assets/images/ico_user.png"
 import ico_bag from "../../assets/images/ico_bag.png"
 import { Link, NavLink } from 'react-router-dom'
+import MenuAccount from './MenuAccount'
+import { useSelector } from 'react-redux'
 
 const Header = () => {
+    const { isLogin } = useSelector((state) => state.authenSlice);
+    console.log(isLogin, "isLogin");
+
     const ListMenu = [
         {
             title: "Home",
@@ -56,17 +61,42 @@ const Header = () => {
                 </nav>
                 <div className="flex items-center gap-6 ml-auto lg:ml-0 shrink-0">
                     <a href="#none" className="lg:hidden"><img className="size-5" src={ico_search} alt="" /></a>
-                    <Link to={"login"}>
-                        <img className="size-5" src={ico_user} alt="" />
-                    </Link>
+
+                    {
+                        localStorage.getItem("accessToken") ?
+                            (
+                                <MenuAccount />
+                            )
+                            :
+                            (
+                                <Link to={"login"}>
+                                    <img className="size-5" src={ico_user} alt="" />
+                                </Link>
+                            )
+                    }
                     <a href="#none" className="relative">
                         <span className="absolute -top-[8px] -right-[10px] size-[18px] bg-black text-white rounded-full text-xs grid place-items-center">10</span>
                         <img className="size-5" src={ico_heart} alt="" />
                     </a>
-                    <Link to={"cart"} className="relative">
-                        <span className="absolute -top-[8px] -right-[10px] size-[18px] bg-black text-white rounded-full text-xs grid place-items-center">3</span>
-                        <img className="size-5" src={ico_bag} alt="" />
-                    </Link>
+
+                    {
+                        isLogin ? (
+                            <Link to={"cart"} className="relative">
+                                <span className="absolute -top-[8px] -right-[10px] size-[18px] bg-black text-white rounded-full text-xs grid place-items-center">
+                                    3
+                                </span>
+                                <img className="size-5" src={ico_bag} alt="" />
+                            </Link>
+                        ) : (
+                            <Link to={"Login"} className="relative">
+                                <span className="absolute -top-[8px] -right-[10px] size-[18px] bg-black text-white rounded-full text-xs grid place-items-center">
+                                    0
+                                </span>
+                                <img className="size-5" src={ico_bag} alt="" />
+                            </Link>
+                        )
+                    }
+
                 </div>
             </div>
         </header >
