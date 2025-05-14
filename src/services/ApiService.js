@@ -25,7 +25,7 @@ const ApiService = {
         }
     },
 
-    PostAccessToken: async (suffixUrl, formData) => { //api post login
+    PostAccessToken: async (suffixUrl, formData) => { //api post login // forgot pass
         try {
             return await axios.post(URL_AUTHEN + suffixUrl, formData)
         } catch (error) {
@@ -33,6 +33,7 @@ const ApiService = {
             throw error;
         }
     },
+    
     PostRegister: async (suffixUrl, formData) => { //api dang ky
         try {
             return await axios.post(URL_AUTHEN + suffixUrl, formData)

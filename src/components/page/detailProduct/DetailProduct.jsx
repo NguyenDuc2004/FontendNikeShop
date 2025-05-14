@@ -20,13 +20,13 @@ import { useDispatch } from 'react-redux'
 
 const DetailProduct = () => {
     const img_description = "https://myshoes.vn/image/catalog/banner/chon-size.png";
-    const [isOpen, setIsOpen] = useState(false);
     const { slug } = useParams();
     // console.log(slug, "slug")
-
+    const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
     const [image, setImage] = React.useState("");
     const [size, setSize] = useState('');
+    const [quantity, setQuantity] = useState(1);
     console.log(image, "image");
 
 
@@ -54,9 +54,9 @@ const DetailProduct = () => {
             productId: dataDetail.id,
             name: dataDetail.name,
             price: dataDetail.price,
-            quantity: 1,
+            quantity: quantity,
             image: dataDetail.imageUrl[0],
-            size:size
+            size: size
         };
         try {
             const res = await ApiService.PostAddCart(suffixUrl, formData);
@@ -197,14 +197,25 @@ const DetailProduct = () => {
                                 <img className="w-5 block" src={ico_checked} alt="Checked Icon" /> <span className="text-green font-medium text-sm">In stock</span>
                             </p>
 
-
                             <div className="mt-6 flex items-center gap-3">
-                                <div className="flex items-center w-max relative">
-                                    <button type="button" className="text-lg block text-[0px] absolute left-4"><span className="text-2xl leading-[24px]">-</span></button>
-                                    <input type="text" className="w-[120px] h-[50px] border px-10 border-gray rounded-full text-center" />
-                                    <button type="button" className="text-lg block text-[0px] absolute right-4"><span className="text-2xl leading-[24px]">+</span></button>
+                                <div className="flex items-center border rounded-md w-max">
+                                    <button
+                                        type="button"
+                                        className="px-3 py-1 text-2xl disabled:text-gray-400"
+                                        onClick={() => setQuantity(quantity - 1)}
+                                        disabled={quantity === 1}
+                                    >
+                                        -
+                                    </button>
+                                    <span className="px-4 text-lg text-center">{quantity}</span>
+                                    <button
+                                        type="button"
+                                        className="px-3 py-1 text-2xl"
+                                        onClick={() => setQuantity(quantity + 1)}
+                                    >
+                                        +
+                                    </button>
                                 </div>
-
                                 <button
                                     type="button"
                                     className="h-[50px] bg-black text-white font-semibold text-sm px-4 flex-1 rounded-full hover:bg hover:bg-white border hover:border-black hover:text-black transition-all"
@@ -268,7 +279,7 @@ const DetailProduct = () => {
             </div>
 
             {/* Mo ta san pham */}
-            <section className="mt-9 lg:mt-24 pt-16 pb-8 bg-gray-200">
+            <section className="mt-9 lg:mt-24 pt-16 pb-8 bg-gray">
                 <div className="container">
                     <div>
                         <div>
@@ -319,6 +330,29 @@ const DetailProduct = () => {
                     </ul>
                 </div>
             </section >
+
+            {/* San pham lien quan */}
+            <section className="mt-9 lg:mt-24 pt-16 pb-8 bg-gray">
+                <div className="container">
+                    <div className="lg:flex justify-between items-end">
+                        <div>
+                            <h2 className="text-3xl font-bold">Sản phẩm liên quan</h2>
+                            <p className="mt-2 text-lightGray">Trải nghiệm những sản phẩm tốt nhất tại cửa hàng chúng tôi!</p>
+                        </div>
+                        <a
+                            href="#none"
+                            className="mt-6 lg:mt-0 h-9 border border-black px-7 inline-flex items-center font-semibold text-black rounded-full text-[15px] hover:bg-black hover:text-white transition-all duration-300"
+                        >Xem tất cả</a>
+                    </div>
+
+                    <ul className="mt-8 lg:grid grid-cols-4 gap-7">
+                        {/* {
+                            bestSeller.map((item) =>
+                                <BoxProduct key={item.id} item={item} />)
+                        } */}
+                    </ul>
+                </div>
+            </section>
         </>
     );
 };
