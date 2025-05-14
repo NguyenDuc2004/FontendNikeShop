@@ -9,18 +9,16 @@ const NewArrivalsProduct = () => {
             <div className="container">
                 <div className="lg:flex justify-between items-end">
                     <div>
-                        <h2 className="text-3xl font-bold">New Arrivals</h2>
-                        <p className="mt-2 text-lightGray">Experience the best products at our store!</p>
+                        <h2 className="text-3xl font-bold">Sản phẩm mới</h2>
+                        <p className="mt-2 text-lightGray">Trải nghiệm đặt lên hàng đầu!</p>
                     </div>
                     <a
                         href="#none"
                         className="mt-6 lg:mt-0 h-9 border border-black px-7 inline-flex items-center font-semibold text-black rounded-full text-[15px] hover:bg-black hover:text-white transition-all duration-300"
-                    >View All</a>
+                    >Xem tất cả</a>
                 </div>
                 <ul className="mt-8 lg:grid grid-cols-4 gap-7">
                     {newArrivals.map(item => <BoxProduct key={item.id} item={item} />)}
-
-
                 </ul>
             </div>
         </section>

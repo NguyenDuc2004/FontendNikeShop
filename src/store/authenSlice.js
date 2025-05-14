@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    isLogin: localStorage.getItem("userName") !== null &&
-        localStorage.getItem("userName") != undefined &&
-        localStorage.getItem("userName") !== "",
+    isLogin: !!localStorage.getItem("accessToken")
 }
 export const authenSlice = createSlice({
     name: "authenSlice",
@@ -28,12 +26,14 @@ export const authenSlice = createSlice({
         LogoutUser: (state) => {
             localStorage.removeItem("accessToken");
             localStorage.removeItem("userName");
+            localStorage.removeItem("userId");
             return {
                 ...state,
                 userName: "",
                 isLogin: false,
             }
         }
+
     }
 })
 

@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import ApiService from '../../../services/ApiService';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { authenSlice, LoginUser, } from '../../../store/authenSlice';
+import { LoginUser, } from '../../../store/authenSlice';
 import { CircularProgress } from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const Login = () => {
-    const [isLoading, setIsLoading] = useState()
+    const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [show, setShow] = useState(false);
@@ -27,6 +29,14 @@ const Login = () => {
     console.log(formLogin, "formLogin");
 
     const handleLogin = async () => {
+        if (!formLogin.email || !formLogin.password) {
+            toast.error("Vui lòng nhập đầy đủ thông tin", { duration: 3000 });
+            return;
+        }
+        if (!/\S+@\S+\.\S+/.test(formLogin.email)) {
+            toast.error("Email không hợp lệ", { duration: 3000 });
+            return;
+        }
         setIsLoading(true)
         try {
             const res = await ApiService.PostAccessToken("/access-token", formLogin)
@@ -36,6 +46,7 @@ const Login = () => {
                     duration: 3000,
                 })
                 localStorage.setItem("accessToken", res.data.accessToken);
+                localStorage.setItem("userId", res.data.userId);
                 dispatch(LoginUser(formLogin));
                 navigate("/")
                 setIsLoading(false);
@@ -88,13 +99,13 @@ const Login = () => {
                                     />
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <a href="#none" className="text-xs mt-5 mb-5 block hover:underline">Forgot password ?</a>
+                                    <Link to={"/forgot-password"}  className="text-xs mt-5 mb-5 block hover:underline">Forgot password ?</Link>
                                     <button
-                                        className='border border-solid text-white bg-black w-[50px] h-[20px]'
+                                        className='border border-solid text-black bg-gray px-3 py-1 rounded-lg'
                                         type="button"
                                         onClick={() => setShow(!show)}>
                                         {
-                                            show ? "Hide" : "Show"
+                                            show ? <VisibilityOff /> : <Visibility />
                                         }
                                     </button>
                                 </div>

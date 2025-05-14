@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import logo from "../../assets/images/logo.png"
 import ico_search from "../../assets/images/ico_search.png"
 import ico_heart from "../../assets/images/ico_heart.png"
@@ -6,23 +6,27 @@ import ico_user from "../../assets/images/ico_user.png"
 import ico_bag from "../../assets/images/ico_bag.png"
 import { Link, NavLink } from 'react-router-dom'
 import MenuAccount from './MenuAccount'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart } from '../../store/cartSlice'
 
 const Header = () => {
     const { isLogin } = useSelector((state) => state.authenSlice);
+    const { cartItems } = useSelector((state) => state.cartSlice);
+    console.log(cartItems, "cartItems");
+
     console.log(isLogin, "isLogin");
 
     const ListMenu = [
         {
-            title: "Home",
+            title: "Trang chủ",
             to: "/"
         },
         {
-            title: "Product",
+            title: "Sản phẩm",
             to: "product"
         },
         {
-            title: "Blog",
+            title: "Bài viết",
             to: "blog"
         }
     ]
@@ -63,7 +67,7 @@ const Header = () => {
                     <a href="#none" className="lg:hidden"><img className="size-5" src={ico_search} alt="" /></a>
 
                     {
-                        localStorage.getItem("accessToken") ?
+                        isLogin ?
                             (
                                 <MenuAccount />
                             )
@@ -79,23 +83,14 @@ const Header = () => {
                         <img className="size-5" src={ico_heart} alt="" />
                     </a>
 
-                    {
-                        isLogin ? (
-                            <Link to={"cart"} className="relative">
-                                <span className="absolute -top-[8px] -right-[10px] size-[18px] bg-black text-white rounded-full text-xs grid place-items-center">
-                                    3
-                                </span>
-                                <img className="size-5" src={ico_bag} alt="" />
-                            </Link>
-                        ) : (
-                            <Link to={"Login"} className="relative">
-                                <span className="absolute -top-[8px] -right-[10px] size-[18px] bg-black text-white rounded-full text-xs grid place-items-center">
-                                    0
-                                </span>
-                                <img className="size-5" src={ico_bag} alt="" />
-                            </Link>
-                        )
-                    }
+
+                    <Link to={"cart"} className="relative">
+                        <span className="absolute -top-[8px] -right-[10px] size-[18px] bg-black text-white rounded-full text-xs grid place-items-center">
+                            {cartItems.length}
+                        </span>
+                        <img className="size-5" src={ico_bag} alt="" />
+                    </Link>
+
 
                 </div>
             </div>

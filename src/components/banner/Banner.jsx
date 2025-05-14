@@ -17,7 +17,7 @@ const Banner = () => {
                     href="#none"
                     className="animate-slideInLeft mt-4 lg:mt-8 h-9 border border-white px-7 inline-flex items-center font-semibold text-white rounded-full text-[15px] hover:bg-white hover:text-black transition-all duration-300"
                 >
-                    Shop
+                    Sản phẩm 
                 </Link>
             </div>
         </section>

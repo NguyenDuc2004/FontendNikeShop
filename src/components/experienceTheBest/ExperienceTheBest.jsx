@@ -6,13 +6,15 @@ const ExperienceTheBest = () => {
             <div className="container">
                 <div className="lg:flex items-center justify-between flex gap-3">
                     <div>
-                        <p className="text-[14px] uppercase">EXPERIENCE THE BEST</p>
+                        <p className="text-[14px] uppercase">Trải nghiệm tốt nhất</p>
                         <h2 className="text-3xl font-semibold py-5 lg:py-10 leading-[1.4]">
                             Tailored Comfort:
                             Customized Interior
                             Styling
                         </h2>
-                        <a href="#none" className="h-9 border border-black px-7 inline-flex items-center font-semibold text-black rounded-full text-[15px] hover:bg-black hover:text-white transition-all duration-300">View All</a>
+                        <a href="#none" className="h-9 border border-black px-7 inline-flex items-center font-semibold text-black rounded-full text-[15px] hover:bg-black hover:text-white transition-all duration-300">
+                            Xem tất cả
+                        </a>
                     </div>
 
                     <div className="rounded-2xl overflow-hidden mt-6 lg:mt-0">

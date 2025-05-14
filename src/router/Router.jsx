@@ -7,6 +7,9 @@ import ProductList from "../components/page/product_list/ProductList";
 import Register from "../components/page/register/Register";
 import ShoppingCart from "../components/page/shopping_cart/ShoppingCart";
 import Order from "../components/page/order/Order";
+import DetailProduct from "../components/page/detailProduct/DetailProduct";
+import ForgotPass from "../components/page/login/ForgotPass";
+import ResetPassword from "../components/page/login/ResetPassword";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +28,11 @@ const router = createBrowserRouter([
                         path: "",
                         element: (<ProductList />)
                     }
+                    ,
+                    {
+                        path: ":slug",
+                        element: (<DetailProduct />)
+                    }
                 ]
             },
             {
@@ -38,6 +46,14 @@ const router = createBrowserRouter([
             {
                 path: "login",
                 element: <Login />
+            },
+            {
+                path:"forgot-password",
+                element: <ForgotPass />
+            },
+            {
+                path:"reset-password",
+                element: <ResetPassword />
             },
             {
                 path: "cart",

@@ -33,7 +33,7 @@ const Register = () => {
                 toast.error("Không để trống thông tin");
                 setIsLoading(false);
             } else {
-                const res = await ApiService.PostRegis("/register", formRegister);
+                const res = await ApiService.PostRegister("/register", formRegister);
                 console.log(res, "Response Data");
                 toast.success("Đăng ký thành công!", {
                     duration: 3000
