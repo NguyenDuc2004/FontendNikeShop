@@ -7,7 +7,7 @@ const OurCategory = () => {
   return (
     <section className="mt-9 lg:mt-24">
       <div className="container">
-        <h2 className="text-3xl font-bold text-center">Our Categories</h2>
+        <h2 className="text-3xl font-bold text-center">Danh mục của chúng tôi</h2>
 
         <ul className="md:grid grid-cols-4 gap-10 mt-11">
           {

@@ -56,6 +56,10 @@ const Box_product = ({ item }) => {
     //     }
     // };
 
+    const handleWishList = () => {
+        
+    }
+
     useEffect(() => {
         if (item) {
             setTimeout(() => {
@@ -77,7 +81,11 @@ const Box_product = ({ item }) => {
                         </span>
                         <ul className="absolute bottom-28 left-4 z-10 flex flex-col gap-3">
                             <li className="opacity-0 translate-y-4 duration-200 group-hover:opacity-100 group-hover:translate-y-0 transition-all">
-                                <button type="button" className="shadow-lg p-3 rounded-full bg-white block hover:bg-slate-200 transition-all">
+                                <button 
+                                type="button" 
+                                className="shadow-lg p-3 rounded-full bg-white block hover:bg-slate-200 transition-all"
+                                onClick={() => handleWishList()}
+                                >
                                     <img src={ico_heart} className="image size-4 rounded-full" alt="Heart Icon" />
                                 </button>
                             </li>

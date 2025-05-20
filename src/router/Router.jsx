@@ -10,6 +10,8 @@ import Order from "../components/page/order/Order";
 import DetailProduct from "../components/page/detailProduct/DetailProduct";
 import ForgotPass from "../components/page/login/ForgotPass";
 import ResetPassword from "../components/page/login/ResetPassword";
+import PrivateRouter from "./PrivateRouter";
+import WishLish from "../components/page/wishlish/wishLish";
 
 const router = createBrowserRouter([
     {
@@ -48,11 +50,11 @@ const router = createBrowserRouter([
                 element: <Login />
             },
             {
-                path:"forgot-password",
+                path: "forgot-password",
                 element: <ForgotPass />
             },
             {
-                path:"reset-password",
+                path: "reset-password",
                 element: <ResetPassword />
             },
             {
@@ -61,7 +63,31 @@ const router = createBrowserRouter([
             },
             {
                 path: "order",
-                element: (<Order />)
+                element: (
+                    <PrivateRouter>
+
+                    </PrivateRouter>
+                ),
+                children: [
+                    {
+                        path: "",
+                        element: (<Order />),
+                    }
+                ]
+            },
+            {
+                path: "wishlish",
+                element: (
+                    <PrivateRouter>
+
+                    </PrivateRouter>
+                ),
+                children: [
+                    {
+                        path: "",
+                        element: (<WishLish/>),
+                    }
+                ]
             }
         ]
     },
