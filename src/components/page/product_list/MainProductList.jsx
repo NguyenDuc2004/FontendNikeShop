@@ -2,9 +2,16 @@ import { Backdrop, CircularProgress, Pagination } from '@mui/material'
 import React, { use, useEffect, useState } from 'react'
 import ApiService from '../../../services/ApiService';
 import Box_product from '../../box_product/BoxProduct';
+import { useParams, useSearchParams } from 'react-router';
 
 const MainProductList = () => {
     const SIZE = 12;
+
+    const [searchParams] = useSearchParams();
+    const search = searchParams.get("search") || "";
+
+    console.log(search, "searchProduct");
+
     const [dataListProduct, setDataListProduct] = useState([]);
     const [category, setCategory] = useState("");
     const [selectedCategoryId, setSelectedCategoryId] = useState(null);
@@ -17,6 +24,7 @@ const MainProductList = () => {
         size: SIZE,
         sort: "",
     })
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (selectedCategoryId) {
@@ -45,6 +53,10 @@ const MainProductList = () => {
     console.log(categorySort, "catergorySort");
 
     const handleCategory = async (categoryId, page = 0, sort = categorySort) => {
+        if (search) {
+            return;
+        }
+
         setSelectedCategoryId(categoryId);
         setCategoryPage(page);
         setCategorySort(sort);
@@ -92,6 +104,20 @@ const MainProductList = () => {
         }
     }
 
+    const fetchSearchProduct = async () => {
+        try {
+            setIsLoading(true);
+            const res = await ApiService.GetListProduct(`/client/products/list?products=name~${search}`);
+            if (res.status === 200) {
+                const { items } = res.data.data;
+                setDataListProduct(items);
+                setIsLoading(false);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     console.log(dataListProduct, "dataListProduct");
     console.log(isLoading, "isLoading");
     console.log(category, "category");
@@ -101,8 +127,14 @@ const MainProductList = () => {
     }, [])
 
     useEffect(() => {
-        fetchListProducts()
-    }, [formData.sort, formData.page])
+        if (search) {
+            fetchSearchProduct();
+        } else {
+            fetchListProducts();
+        }
+    }, [formData.sort, formData.page, search]);
+
+
     return (
         <>{
             dataListProduct && dataListProduct.length ? (
@@ -114,7 +146,7 @@ const MainProductList = () => {
                                 <div className="">
                                     <h2 className="text-lg font-semibold relative group cursor-pointer ">Danh mục
                                         {/* <div className="mt-4 space-y-3 absolute hidden bg-white shadow-lg p-3 rounded-md group-hover:flex gap-10  transition-all duration-300 transform scale-95 group-hover:scale-100 opacity-0 group-hover:opacity-100 top-1"> */}
-                                        <div className='pl-3'>
+                                        {!search && (<div className='pl-3'>
                                             <button
                                                 className={`mb-2 font-medium text-sm transition-all ${selectedCategoryId === null ? "text-black font-bold" : "text-lightGray hover:text-black"}`}
                                                 onClick={handleResetProductList}
@@ -137,7 +169,9 @@ const MainProductList = () => {
                                                     </li>
                                                 ))}
                                             </ul>
-                                        </div>
+                                        </div>)
+
+                                        }
 
                                     </h2>
 

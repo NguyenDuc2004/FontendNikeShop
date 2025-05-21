@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from "../../assets/images/logo.png"
 import ico_search from "../../assets/images/ico_search.png"
 import ico_heart from "../../assets/images/ico_heart.png"
 import ico_user from "../../assets/images/ico_user.png"
 import ico_bag from "../../assets/images/ico_bag.png"
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import MenuAccount from './MenuAccount'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '../../store/cartSlice'
@@ -12,10 +12,25 @@ import { addToCart } from '../../store/cartSlice'
 const Header = () => {
     const { isLogin } = useSelector((state) => state.authenSlice);
     const { cartItems } = useSelector((state) => state.cartSlice);
+    const [search, setSearch] = useState("");
     console.log(cartItems, "cartItems");
+    console.log(search, "searchHeader");
 
     console.log(isLogin, "isLogin");
+    const navigate = useNavigate();
 
+    const handleChange = (e) => {
+        console.log(e.target.value);
+        setSearch(e.target.value)
+    }
+
+    const handleSearch = () => {
+        if (search) {
+            navigate(`/product?search=${encodeURIComponent(search)}`);
+        } else {
+            navigate("product")
+        }
+    }
     const ListMenu = [
         {
             title: "Trang chủ",
@@ -41,17 +56,32 @@ const Header = () => {
 
                 <div className='relative ml-auto lg:mr-20 max-w-[500px] w-full hidden xl:block'>
                     <input
+                        value={search}
+                        onChange={handleChange}
                         type="text"
-                        placeholder='Search....'
-                        className='w-full px-4 py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-full focus:outline-none focus:ring-blue-500 focus:border-transparent'
+                        placeholder='Search...'
+                        className='w-full px-4 py-2 pl-10 pr-24 text-gray-700 bg-white border border-gray-300 rounded-full shadow focus:outline-none focus:ring-2 focus:ring-blue-400 transition'
                     />
-                    <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
-                        <span>
-                            <img className='size-5' src={ico_search} alt="" />
-                        </span>
-                    </div>
+                    {/* Icon search bên phải input */}
+                    <button
+                        onClick={handleSearch}
+                        className='absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition text-white'
+                        style={{ lineHeight: 0 }}
+                        type="button"
+                    >
+                        <img className='size-5' src={ico_search} alt="" />
+                    </button>
+                    {/* Nút xóa tìm kiếm */}
+                    {search && (
+                        <button
+                            className="absolute right-14 top-1/2 -translate-y-1/2 px-3 py-1 bg-gray-200 hover:bg-red-400 hover:text-white rounded-full text-sm transition"
+                            onClick={() => {navigate("/product"); setSearch("")}}
+                            type="button"
+                        >
+                            Xóa
+                        </button>
+                    )}
                 </div>
-
                 <nav className='mr-28 hidden lg:block m1-auto'>
                     <ul className='flex items-center gap-10'>
                         {
