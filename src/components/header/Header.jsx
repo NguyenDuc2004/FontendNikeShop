@@ -65,7 +65,7 @@ const Header = () => {
                     {/* Icon search bên phải input */}
                     <button
                         onClick={handleSearch}
-                        className='absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition text-white'
+                        className='absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-gray hover:bg-blue-600 transition text-white'
                         style={{ lineHeight: 0 }}
                         type="button"
                     >

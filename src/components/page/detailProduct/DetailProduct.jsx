@@ -17,6 +17,7 @@ import { Grow, Rating, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import toast from 'react-hot-toast'
 import { addToCart } from '../../../store/cartSlice'
 import { useDispatch } from 'react-redux'
+import Box_product from '../../box_product/BoxProduct'
 
 const DetailProduct = () => {
     const img_description = "https://myshoes.vn/image/catalog/banner/chon-size.png";
@@ -27,10 +28,10 @@ const DetailProduct = () => {
     const [image, setImage] = React.useState("");
     const [size, setSize] = useState('');
     const [quantity, setQuantity] = useState(1);
-    console.log(image, "image");
-
-
+    // console.log(image, "image");
     const [dataDetail, setDataDetail] = React.useState({});
+    const [dataCategory, setCategory] = useState([]);
+    const [view, setView] = useState(false);
     const dispatch = useDispatch();
 
     const fetchApiDetail = async () => {
@@ -86,9 +87,33 @@ const DetailProduct = () => {
             setSize(newSize); // newSize chính là value của ToggleButton được chọn
         }
     };
-
     console.log(size, "size");
+    console.log(dataDetail.categoryId, "cateId");
 
+    const fetchCategoryById = async () => {
+        try {
+            const res = await ApiService.GetListProduct(`/client/products/list?categories=id:${dataDetail.categoryId}`);
+            if (res.status === 200) {
+                console.log(res, "ressss");
+
+                setCategory(res.data.data.items)
+            }
+        }
+        catch (error) {
+            console.log(error);
+
+        }
+    }
+    console.log(dataCategory, "dtCate");
+
+
+    useEffect(() => {
+        if (dataDetail.categoryId) {
+            fetchCategoryById()
+        }
+    }, [dataDetail.categoryId])
+
+    console.log(view, "view");
 
 
     useEffect(() => {
@@ -148,7 +173,7 @@ const DetailProduct = () => {
                         </p>
 
                         <div className='py-2'>
-                            <h1 className="pb-2 text-[20px] lg:text-xl font-semibold">Chọn size</h1>
+                            <h1 className="pb-2 text-[20px] lg:text-xl font-semibold">Chọn kích cỡ</h1>
                             <ToggleButtonGroup
                                 value={size}
                                 exclusive
@@ -187,14 +212,15 @@ const DetailProduct = () => {
                         <div className="mt-2 pt-2 border-t border-gray">
                             <p className="flex items-center gap-2 mt-2">
                                 <img className="w-5 block animate-flicker" src={ico_eye} alt="Eye Icon" />
-                                <span className="font-medium text-sm">35 people are viewing this right now</span>
+                                <span className="font-medium text-sm">35 người đang xem sản phẩm</span>
                             </p>
                             <p className="flex items-center gap-2 mt-4">
                                 <img className="w-5 block animate-zoomInOut" src={ico_fire} alt="Fire Icon" />
-                                <span className="text-red-600 font-medium text-sm">35 sold in last 18 hours</span>
+                                <span className="text-red-600 font-medium text-sm">Đã bán 35 sản phẩm trong 18 giờ </span>
                             </p>
                             <p className="flex items-center gap-2 mt-6">
-                                <img className="w-5 block" src={ico_checked} alt="Checked Icon" /> <span className="text-green font-medium text-sm">In stock</span>
+                                <img className="w-5 block" src={ico_checked} alt="Checked Icon" />
+                                <span className="text-green font-medium text-sm">In stock</span>
                             </p>
 
                             <div className="mt-6 flex items-center gap-3">
@@ -221,7 +247,7 @@ const DetailProduct = () => {
                                     className="h-[50px] bg-black text-white font-semibold text-sm px-4 flex-1 rounded-full hover:bg hover:bg-white border hover:border-black hover:text-black transition-all"
                                     onClick={handleAddToCart}
                                 >
-                                    Add To Cart
+                                    Thêm vào giỏ hàng
                                 </button>
                                 <button type="button" className="p-4 bg-white border border-[#e6e6e6] rounded-full">
                                     <img className="w-4" src={ico_heart} alt="Heart Icon" />
@@ -254,18 +280,20 @@ const DetailProduct = () => {
                             <div className="flex items-center mt-6 mb-6 pt-6 pb-6 border-t border-b border-b-gray border-t-gray">
                                 <div><img className="block w-9" src={ico_shipping2} alt="Shipping Icon 2" /></div>
                                 <p className="flex-1 ml-4 pl-4 border-l border-l-[#d9d9d9] text-sm">
-                                    Order in the next 22 hours 45 minutes to get it between <br />
-                                    <span className="font-semibold underline">Tuesday, Oct 22 </span> <span className="mx-2">and</span>
-                                    <span className="font-semibold underline"> Saturday, Oct 26</span>
+                                    Vận chuyển đến khách hàng từ 3 đến 5 ngày <br />
+                                    <span className="font-semibold underline">Thứ 3 22-5-2025</span> <span className="mx-2">vàvà</span>
+                                    <span className="font-semibold underline"> Thứ 7, 29-5-2025</span>
                                 </p>
                             </div>
 
                             <div className="p-[15px] rounded-xl border border-[#dedede] flex items-start gap-3">
                                 <div><img src={ico_check} className="w-6 block" alt="Check Icon" /></div>
                                 <div className="text-sm">
-                                    <p className="text-lightGray">Pickup available at <span className="font-semibold text-black"> Akaze store</span></p>
-                                    <p className="text-xs text-lightGray mt-1">Usually ready in 24 hours</p>
-                                    <button type="button" className="underline text-xs mt-4">View store information</button>
+                                    <p className="text-lightGray">Có thế nhận hàng tại
+                                        <span className="font-semibold text-black"> Nike Store</span>
+                                    </p>
+                                    <p className="text-xs text-lightGray mt-1">Thường nhận hàng trong vòng 24h</p>
+                                    <button type="button" className="underline text-xs mt-4">Xem thông tin cửa hàng</button>
                                 </div>
                             </div>
 
@@ -339,17 +367,26 @@ const DetailProduct = () => {
                             <h2 className="text-3xl font-bold">Sản phẩm liên quan</h2>
                             <p className="mt-2 text-lightGray">Trải nghiệm những sản phẩm tốt nhất tại cửa hàng chúng tôi!</p>
                         </div>
-                        <a
-                            href="#none"
+                        <button
+                            onClick={() => setView(!view)}
                             className="mt-6 lg:mt-0 h-9 border border-black px-7 inline-flex items-center font-semibold text-black rounded-full text-[15px] hover:bg-black hover:text-white transition-all duration-300"
-                        >Xem tất cả</a>
+                        >
+                            {
+                                !view ? "Xem tất cả" : "Thu gọn"
+                            }
+                        </button>
                     </div>
 
                     <ul className="mt-8 lg:grid grid-cols-4 gap-7">
-                        {/* {
-                            bestSeller.map((item) =>
-                                <BoxProduct key={item.id} item={item} />)
-                        } */}
+                        {
+                            !view ?
+                                (dataCategory && dataCategory.slice(0, 4).map((item) =>
+                                    <Box_product key={item.id} item={item} />))
+                                :
+                                ((dataCategory && dataCategory.map((item) =>
+                                    <Box_product key={item.id} item={item} />)))
+
+                        }
                     </ul>
                 </div>
             </section>

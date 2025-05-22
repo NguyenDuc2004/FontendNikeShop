@@ -64,7 +64,7 @@ const Register = () => {
         <>
             <section className="">
                 <div className="pt-20">
-                    <h2 className="text-3xl font-semibold text-center">Register Account</h2>
+                    <h2 className="text-3xl font-semibold text-center">Đăng ký tài khoản </h2>
                     <div className="container">
                         <div className="max-w-xl mx-auto">
                             <h2 className="font-semibold text-2xl"></h2>
@@ -153,7 +153,7 @@ const Register = () => {
                                         onClick={() => handleSubmit()}
                                         disabled={isLoading}
                                     >
-                                        Register
+                                        Đăng ký
                                         {
                                             isLoading && <span className='ml-4'> <CircularProgress color="inherit" /></span>
                                         }
@@ -167,7 +167,7 @@ const Register = () => {
                                     fdprocessedid="sd2ze4"
                                     onClick={() => navigate("/login")}
                                 >
-                                    Login
+                                    Đăng nhập
                                 </a>
                             </form>
                         </div>

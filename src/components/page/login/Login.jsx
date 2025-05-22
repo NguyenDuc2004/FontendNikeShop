@@ -67,10 +67,10 @@ const Login = () => {
         <>
             <section className="">
                 <div className="pt-20">
-                    <h2 className="text-3xl font-semibold text-center">Account</h2>
+                    <h2 className="text-3xl font-semibold text-center">Tài khoản</h2>
                     <div className="container">
                         <div className="max-w-xl mx-auto">
-                            <h2 className="font-semibold text-2xl">Sign in</h2>
+                            <h2 className="font-semibold text-2xl">Đăng nhập</h2>
 
                             <form action="" className="mt-5">
                                 <div>
@@ -99,7 +99,7 @@ const Login = () => {
                                     />
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <Link to={"/forgot-password"}  className="text-xs mt-5 mb-5 block hover:underline">Forgot password ?</Link>
+                                    <Link to={"/forgot-password"}  className="text-xs mt-5 mb-5 block hover:underline">Quên mật khẩu?</Link>
                                     <button
                                         className='border border-solid text-black bg-gray px-3 py-1 rounded-lg'
                                         type="button"
@@ -118,14 +118,14 @@ const Login = () => {
                                         fdprocessedid="sd2ze4"
                                         disabled={isLoading}
                                     >
-                                        Login
+                                        Đăng nhập
                                         {
                                             isLoading && <span className='ml-4'> <CircularProgress color="inherit" /></span>
                                         }
                                     </button>
 
                                     <button onClick={() => navigate("/register")} type="button" className="w-full uppercase h-[50px] bg-black text-white font-semibold text-sm px-4 flex-1 rounded-lg hover:bg hover:bg-white border hover:border-black hover:text-black transition-all" fdprocessedid="sd2ze4">
-                                        Register
+                                        Đăng ký
                                     </button>
                                 </div>
 

@@ -19,6 +19,9 @@ const MainProductList = () => {
     const [categoryTotalPage, setCategoryTotalPage] = useState(1);
     const [categorySort, setCategorySort] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [totalPageSearch,setTotalPageSearch] = useState();
+    const [pageSearch,setPageSearch] = useState(0);
+    const [sortSearch,setSortSearch] = useState("");
     const [formData, setFormData] = useState({
         page: 0,
         size: SIZE,
@@ -30,7 +33,10 @@ const MainProductList = () => {
         if (selectedCategoryId) {
             // Nếu đang ở category, gọi lại handleCategory với sort mới
             handleCategory(selectedCategoryId, 0, value);
-        } else {
+        }else if(search){ // nếu đang ở chức năng tìm kiếm thì sẽ sort theo giá trị tìm kiếmkiếm
+            setSortSearch(value);
+        }
+        else {
             // Nếu không ở category, sort toàn bộ sản phẩm
             setFormData({
                 ...formData,
@@ -39,7 +45,8 @@ const MainProductList = () => {
             });
         }
     };
-
+    console.log(sortSearch,"sortSearch");
+    
     const fetchListCategories = async () => {
         try {
             const res = await ApiService.Get("/client/categories/list");
@@ -107,9 +114,10 @@ const MainProductList = () => {
     const fetchSearchProduct = async () => {
         try {
             setIsLoading(true);
-            const res = await ApiService.GetListProduct(`/client/products/list?products=name~${search}`);
+            const res = await ApiService.GetListProduct(`/client/products/list?products=name~${search}&page=${pageSearch}&sort=${sortSearch}`);
             if (res.status === 200) {
                 const { items } = res.data.data;
+                setTotalPageSearch(res.data.data.totalPage);
                 setDataListProduct(items);
                 setIsLoading(false);
             }
@@ -117,7 +125,8 @@ const MainProductList = () => {
             console.log(error);
         }
     }
-
+    console.log(totalPageSearch,"total");
+    
     console.log(dataListProduct, "dataListProduct");
     console.log(isLoading, "isLoading");
     console.log(category, "category");
@@ -132,7 +141,7 @@ const MainProductList = () => {
         } else {
             fetchListProducts();
         }
-    }, [formData.sort, formData.page, search]);
+    }, [formData.sort, formData.page, search,pageSearch,sortSearch]);
 
 
     return (
@@ -190,7 +199,7 @@ const MainProductList = () => {
                                     <select
                                         name="sort"
                                         className="w-full text-sm outline-none"
-                                        value={selectedCategoryId ? categorySort : formData.sort}
+                                        value={!search ? (selectedCategoryId ? categorySort : formData.sort) : (sortSearch)}
                                         onChange={handleChange}
                                     >
                                         <option value="">Mặc định</option>
@@ -213,7 +222,7 @@ const MainProductList = () => {
                                             </Backdrop>)
                                 }
 
-                                {selectedCategoryId ? (
+                                {!search ? (selectedCategoryId ? (
                                     <div className='mt-10 flex justify-center'>
                                         <Pagination
                                             count={categoryTotalPage}
@@ -233,14 +242,21 @@ const MainProductList = () => {
                                             )}
                                         />
                                     </div>
-                                )}
+                                )) : (<div className='mt-10 flex justify-center'>
+                                    <Pagination
+                                        count={totalPageSearch}
+                                         onChange={(e, page) => (
+                                                setPageSearch(page-1)
+                                            )}
+                                    />
+                                </div>)}
                             </div>
                         </div>
                     </div>
                 </section>
 
 
-            ) : (<div className='font-bold text-center text-[50px] h-[100px] mt-[30px]'>.....No Data....</div>)
+            ) : (<div className='font-bold text-center text-[50px] h-[100px] mt-[30px]'>......Không có sản phẩm nào!.....</div>)
         }
 
         </>
