@@ -76,7 +76,7 @@ const Register = () => {
                                         value={formRegister.fullName}
                                         type="text"
                                         className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]"
-                                        placeholder="FullName" fdprocessedid="4iilgq"
+                                        placeholder="Tên đầy đủ" fdprocessedid="4iilgq"
                                         onChange={handleChange}
                                     />
                                 </div>
@@ -109,7 +109,7 @@ const Register = () => {
                                         value={formRegister.password}
                                         type="password"
                                         className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]"
-                                        placeholder="Password"
+                                        placeholder="Mật khẩu"
                                         fdprocessedid="4iilgq"
                                         onChange={handleChange} />
                                     {formRegister.password !== "" && (
@@ -130,7 +130,7 @@ const Register = () => {
                                         value={formRegister.phone}
                                         type="text"
                                         className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]"
-                                        placeholder="Phone"
+                                        placeholder="Số điện thoại"
                                         dprocessedid="4iilgq"
                                         onChange={handleChange} />
                                 </div>
@@ -141,7 +141,7 @@ const Register = () => {
                                         value={formRegister.address}
                                         type="text"
                                         className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]"
-                                        placeholder="Address"
+                                        placeholder="Địa chỉ"
                                         fdprocessedid="4iilgq"
                                         onChange={handleChange} />
                                 </div>

@@ -250,9 +250,9 @@ const ShoppingCart = () => {
                 </table>
 
                 <div className="mt-9">
-                  <p className="text-md">Special instructions for seller</p>
+                  <p className="text-md">Chú thích</p>
 
-                  <textarea name="" id="" placeholder="how can we help you?" className="text-md mt-3 border border-gray p-5 w-full" rows="5"></textarea>
+                  <textarea name="" id="" placeholder="Tôi có thể giúp gì cho bạn?" className="text-md mt-3 border border-gray p-5 w-full" rows="5"></textarea>
                 </div>
               </div>
               <div className="col-span-2">

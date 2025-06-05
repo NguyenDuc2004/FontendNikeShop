@@ -5,30 +5,30 @@ const Order = () => {
         <>
             <section>
                 <div className="pt-16">
-                    <h2 className="text-3xl font-semibold text-center">Payment Order</h2>
+                    <h2 className="text-3xl font-semibold text-center">Thanh toán</h2>
 
                     <div className="container">
                         <div className="lg:grid grid-cols-2 mt-10 gap-8">
                             <div>
                                 <form action="" className="space-y-6">
                                     <div className="w-full">
-                                        <label for="name" className="font-semibold text-lg">Contact</label>
+                                        <label for="name" className="font-semibold text-lg">Liên hệ</label>
                                         <input id="name" type="text" className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]" placeholder="Email or mobile phone number" fdprocessedid="kpj0gt" />
                                         <div className="flex items-center gap-2 mt-3">
                                             <input id="email-check" className="cursor-pointer size-4" type="checkbox" />
-                                            <label for="email-check" className="text-[14px] cursor-pointer">Email me with news and offers</label>
+                                            <label for="email-check" className="text-[14px] cursor-pointer">Gửi email cho tôi với tin tức và ưu đãi mới</label>
                                         </div>
                                     </div>
 
                                     <div className="w-full">
-                                        <label className="font-semibold text-lg">Delivery</label>
+                                        <label className="font-semibold text-lg">Vận chuyển</label>
                                         <div className="flex items-center gap-2 mt-3">
                                             <input id="ship-check" className="cursor-pointer size-4" type="checkbox" />
-                                            <label for="ship-check" className="text-[14px] cursor-pointer">Ship</label>
+                                            <label for="ship-check" className="text-[14px] cursor-pointer">Giao hàng</label>
                                         </div>
                                         <div className="flex items-center gap-2 mt-3">
                                             <input id="store-check" className="cursor-pointer size-4" type="checkbox" />
-                                            <label for="store-check" className="text-[14px] cursor-pointer">Pick up in store</label>
+                                            <label for="store-check" className="text-[14px] cursor-pointer">Nhận tại cửa hàng</label>
                                         </div>
 
                                         <div className="w-full p-3 border rounded-lg mt-6 border-gray">
@@ -42,46 +42,74 @@ const Order = () => {
 
                                         <div className="flex items-center gap-4">
                                             <div className="flex items-center gap-2 mt-3 flex-1">
-                                                <input name="first-name" type="text" className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]" placeholder="First name" fdprocessedid="yj8n0l" />
+                                                <input 
+                                                name="first-name" 
+                                                type="text" 
+                                                className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]" 
+                                                placeholder="Họ" 
+                                                fdprocessedid="yj8n0l" />
                                             </div>
                                             <div className="flex items-center gap-2 mt-3 flex-1">
-                                                <input name="last-name" type="text" className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]" placeholder="Last name" fdprocessedid="jjdhyc" />
+                                                <input 
+                                                name="last-name" 
+                                                type="text" 
+                                                className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]" 
+                                                placeholder="Tên đệm" fdprocessedid="jjdhyc" />
                                             </div>
                                         </div>
 
                                         <div className="flex items-center gap-2 mt-3 flex-1">
-                                            <input name="address" type="text" className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]" placeholder="Address" fdprocessedid="omu5w" />
+                                            <input 
+                                            name="address" 
+                                            type="text" 
+                                            className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]" 
+                                            placeholder="Địa chỉ" 
+                                            fdprocessedid="omu5w" />
                                         </div>
 
                                         <div className="flex items-center gap-2 mt-3 flex-1">
-                                            <input name="address" type="text" className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]" placeholder="Apartment, suite, etc(optional)" fdprocessedid="0aemzb" />
+                                            <input 
+                                            name="address" 
+                                            type="text" className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]" 
+                                            placeholder="Apartment, suite, etc(optional)" 
+                                            fdprocessedid="0aemzb" />
                                         </div>
 
                                         <div className="flex items-center gap-4">
                                             <div className="flex items-center gap-2 mt-3 flex-1">
-                                                <input name="first-name" type="text" className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]" placeholder="City" fdprocessedid="s68z" />
+                                                <input 
+                                                name="first-name" 
+                                                type="text" 
+                                                className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]" 
+                                                placeholder="Thành phố" 
+                                                fdprocessedid="s68z" />
                                             </div>
                                             <div className="flex items-center gap-2 mt-3 flex-1">
-                                                <input name="last-name" type="text" className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]" placeholder="Postal code(optional)" fdprocessedid="ri6v65" />
+                                                <input 
+                                                name="last-name" 
+                                                type="text" 
+                                                className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]" 
+                                                placeholder="Postal code(optional)" 
+                                                fdprocessedid="ri6v65" />
                                             </div>
                                         </div>
 
                                         <div className="flex items-center gap-2 mt-3">
                                             <input id="save-check" className="cursor-pointer size-4" type="checkbox" />
-                                            <label for="save-check" className="text-[14px] cursor-pointer">Save this information for next time</label>
+                                            <label for="save-check" className="text-[14px] cursor-pointer">Lưu thông tin</label>
                                         </div>
 
                                         <div className="mt-9">
-                                            <p className="font-semibold">Shipping method</p>
+                                            <p className="font-semibold">Phương thức giao hàng</p>
                                             <div className="flex items-center justify-between mt-3 p-4 bg-[#f0f5ff] gap-3 border border-[#1773b0] rounded-lg">
-                                                <span className="flex-1">Standard</span>
-                                                <span className="uppercase font-semibold text-[14px]">Free</span>
+                                                <span className="flex-1">Tiêu chuẩn</span>
+                                                <span className="uppercase font-semibold text-[14px]">Miễn phí</span>
                                             </div>
                                         </div>
 
                                         <div className="mt-6">
                                             <button type="button" className="w-full uppercase h-[55px] bg-black text-white font-semibold text-sm px-4 flex-1 rounded-lg hover:bg hover:bg-white border hover:border-black hover:text-black transition-all" fdprocessedid="2qj785">
-                                                Pay now
+                                                Thanh toán ngay 
                                             </button>
                                         </div>
                                     </div>
@@ -109,22 +137,22 @@ const Order = () => {
 
                                     <ul className="mt-6 space-y-4">
                                         <li className="flex items-center justify-between">
-                                            <span className="text-[14px]">Subtotal • 2 items</span>
+                                            <span className="text-[14px]">Tổng cộng • 2 sản phẩm</span>
                                             <span className="text-[14px]">$119.00</span>
                                         </li>
 
                                         <li className="flex items-center justify-between">
-                                            <span className="text-[14px]">Shipping</span>
-                                            <span className="text-[14px]">Free</span>
+                                            <span className="text-[14px]">Phí giao hàng</span>
+                                            <span className="text-[14px]">Miễn phí</span>
                                         </li>
 
                                         <li className="flex items-center justify-between">
-                                            <span className="text-[14px]">Estimated taxes</span>
+                                            <span className="text-[14px]">Thuế</span>
                                             <span className="text-[14px]">$11.90</span>
                                         </li>
 
                                         <li className="flex items-center justify-between">
-                                            <span className="text-lg font-bold">Total</span>
+                                            <span className="text-lg font-bold">Tổng tiền</span>
                                             <span className="text-lg font-bold">USD $130.90</span>
                                         </li>
                                     </ul>

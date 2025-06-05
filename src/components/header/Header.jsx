@@ -11,7 +11,7 @@ import { addToCart } from '../../store/cartSlice'
 
 const Header = () => {
     const { isLogin } = useSelector((state) => state.authenSlice);
-    const { cartItems } = useSelector((state) => state.cartSlice);
+   const cartItems = useSelector((state) => state.cartSlice.cartItems);
     const [search, setSearch] = useState("");
     console.log(cartItems, "cartItems");
     console.log(search, "searchHeader");
