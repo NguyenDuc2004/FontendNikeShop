@@ -59,7 +59,7 @@ const Header = () => {
                         value={search}
                         onChange={handleChange}
                         type="text"
-                        placeholder='Search...'
+                        placeholder='Tìm kiếm...'
                         className='w-full px-4 py-2 pl-10 pr-24 text-gray-700 bg-white border border-gray-300 rounded-full shadow focus:outline-none focus:ring-2 focus:ring-blue-400 transition'
                     />
                     {/* Icon search bên phải input */}

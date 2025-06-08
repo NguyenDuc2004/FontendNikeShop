@@ -257,15 +257,14 @@ const ShoppingCart = () => {
               </div>
               <div className="col-span-2">
                 <div className="p-7 bg-[#f7f4ef] rounded-lg">
-                  <h3 className="uppercase font-medium text-sm">FREE SHIPPING ON ORDERS $100.00</h3>
-                  <p className="text-sm mt-2">Congratulations , you've got free shipping!</p>
+                  <h3 className="uppercase font-medium text-sm">Miễn phí giao hàng cho đơn từ 100k trở lên</h3>
                   <p className="bg-[#14c100] w-full h-1 mt-5"></p>
                 </div>
 
                 <div className="p-6 mt-4 bg-[#f6f6f6] rounded-lg">
-                  <span>Coupon</span>
-                  <p className="mt-2 mb-6 text-md text-lightGray">* Discount will be calculated and applied at checkout</p>
-                  <input type="text" className="h-10 px-6 text-sm border border-gray rounded-md w-full" placeholder="Coupon code" fdprocessedid="eg5plx" />
+                  <span>Mã giảm giá</span>
+                  <p className="mt-2 mb-6 text-md text-lightGray">Giảm giá được áp dụng tại thời điểm thanh toán </p>
+                  <input type="text" className="h-10 px-6 text-sm border border-gray rounded-md w-full" placeholder="Mã giảm giá" fdprocessedid="eg5plx" />
                   <p className="mt-6 font-semibold">Total: {cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toLocaleString('vi-VNVN')} đ</p>
                   <Link to={"/order"} className="flex items-center justify-center h-[50px] mt-6 bg-black w-full text-white font-semibold text-sm px-4 flex-1 rounded-full hover:bg hover:bg-white border hover:border-black hover:text-black transition-all">
                     Thanh toán

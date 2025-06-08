@@ -126,6 +126,21 @@ const ApiService = {
             }
             throw error;
         }
+    },
+
+    PostOrder: async (suffixUrl, formData) => { //api post order
+        try {
+            // Kiểm tra dữ liệu đầu vào
+            // if (!formData || !formData.userId || !formData.cartItems) {
+            //     console.error("Dữ liệu không hợp lệ:", formData);
+            //     throw new Error("Dữ liệu không hợp lệ: Thiếu userId hoặc cartItems");
+            // }
+
+            return await axios.post(URL + suffixUrl, formData);
+        } catch (error) {
+            console.error("Lỗi khi gửi POST request:", error);
+            throw error;
+        }
     }
 
 }

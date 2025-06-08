@@ -12,6 +12,7 @@ import ForgotPass from "../components/page/login/ForgotPass";
 import ResetPassword from "../components/page/login/ResetPassword";
 import PrivateRouter from "./PrivateRouter";
 import WishLish from "../components/page/wishlish/wishLish";
+import MyOrder from "../components/page/my_order/MyOrder";
 
 const router = createBrowserRouter([
     {
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
                         element: (<WishLish/>),
                     }
                 ]
+            },
+            {
+                path:"my-orders",
+                element:(<MyOrder/>)
             }
         ]
     },

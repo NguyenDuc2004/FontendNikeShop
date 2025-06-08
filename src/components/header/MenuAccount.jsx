@@ -94,29 +94,29 @@ const MenuAccount = () => {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <MenuItem onClick={handleClose}>
-                    <Avatar /> Profile
+                    <Avatar /> Hồ sơ của tôi
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <Avatar /> My account
+                <MenuItem onClick={() =>  navigate("/my-orders")}>
+                    <Avatar /> Đơn hàng của tôi
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleClose}>
                     <ListItemIcon>
                         <PersonAdd fontSize="small" />
                     </ListItemIcon>
-                    Add another account
+                    Thêm tài khoản khác
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                     <ListItemIcon>
                         <Settings fontSize="small" />
                     </ListItemIcon>
-                    Settings
+                    Cài đặt
                 </MenuItem>
                 <MenuItem onClick={handleLogout}>
                     <ListItemIcon>
                         <Logout fontSize="small" />
                     </ListItemIcon>
-                    Logout
+                   Đăng xuất
                 </MenuItem>
             </Menu>
         </>

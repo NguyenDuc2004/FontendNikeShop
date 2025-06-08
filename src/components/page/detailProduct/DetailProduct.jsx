@@ -351,10 +351,7 @@ const DetailProduct = () => {
                             </div>
                         )}
                     </div>
-
-
                     <ul className="mt-8 lg:grid grid-cols-4 gap-7">
-
                     </ul>
                 </div>
             </section >
