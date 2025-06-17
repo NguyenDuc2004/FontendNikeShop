@@ -130,19 +130,44 @@ const ApiService = {
 
     PostOrder: async (suffixUrl, formData) => { //api post order
         try {
-            // Kiểm tra dữ liệu đầu vào
-            // if (!formData || !formData.userId || !formData.cartItems) {
-            //     console.error("Dữ liệu không hợp lệ:", formData);
-            //     throw new Error("Dữ liệu không hợp lệ: Thiếu userId hoặc cartItems");
-            // }
-
-            return await axios.post(URL + suffixUrl, formData);
+            return await axios.post(URL + suffixUrl,formData,{
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem("accessToken")}` // Lấy token từ localStorage
+                }
+            });
         } catch (error) {
             console.error("Lỗi khi gửi POST request:", error);
             throw error;
         }
+    },
+    getOrder: async (suffixUrl,params) => {
+         //api get order
+         try{
+            return await axios.get(URL + suffixUrl, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem("accessToken")}` // Lấy token từ localStorage
+                }
+            });
+         }catch(error) {
+            console.error("Lỗi khi gửi GET request:", error);
+            throw error;
+         }
+    },
+    DeleteOrder: async (suffixUrl) => {
+        try {
+             return await axios.patch(`${URL}${suffixUrl}`, {}, {
+            headers: {
+             'Content-Type': 'application/json',
+             Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+            }
+         });
+        } catch (error) {
+         console.error("Lỗi khi gửi PATCH request:", error.response?.data || error.message);
+         throw error;
+        }
     }
-
 }
 
 export default ApiService;

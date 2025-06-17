@@ -2,6 +2,7 @@ import React from 'react'
 import img_order from "../../../assets/images/img_order.webp"
 import { useSelector } from 'react-redux'
 import ApiService from '../../../services/ApiService';
+import toast from 'react-hot-toast';
 const Order = () => {
     const cartItems = useSelector((state) => state.cartSlice.cartItems);
     console.log(cartItems,"cartItems");
@@ -10,13 +11,20 @@ const Order = () => {
         const formData = {
             userId: localStorage.getItem("userId"),
             items: cartItems.map((item) => ({
-                 productId: item.id,
+                 productId: item.productId,
                  quantity: item.quantity,
                  price: item.price,
             }))
         }
         try {
             const res = await ApiService.PostOrder("/client/orders/create", formData);
+            if(res.status === 200){
+               toast.success("Đặt hàng thành công!");
+                // Xử lý thành công, có thể chuyển hướng hoặc hiển thị thông báo
+               
+                // Có thể xóa giỏ hàng sau khi đặt hàng thành công
+                // dispatch(clearCart());
+            }
             
         } catch (error) {
             console.error("Lỗi khi gửi yêu cầu đặt hàng:", error);

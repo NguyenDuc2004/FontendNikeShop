@@ -25,5 +25,4 @@ const NewArrivalsProduct = () => {
         </section>
     )
 }
-
 export default NewArrivalsProduct
